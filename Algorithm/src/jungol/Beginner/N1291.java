@@ -2,6 +2,8 @@ package jungol.Beginner;
 
 import java.util.Scanner;
 
+
+
 public class N1291 {
 	
 	/**
@@ -16,15 +18,54 @@ public class N1291 {
 	 * */
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+	    Scanner scnr = new Scanner(System.in);
 		
-		int prmt1 = scanner.nextInt();
-		int prmt2 = scanner.nextInt();
+		String term = "   ";
+		String astr = " * ";
+		String eqls = " = ";
 		
-		// check validation
-		if(prmt1 < 2 || prmt1 > 9 || prmt2 < 2 || prmt2 > 9) {
-			System.out.println("INPUT ERROR!");
+		while(true) {
+		    
+		    int prmtr1 = scnr.nextInt();
+		    int prmtr2 = scnr.nextInt();
+		    
+		    int maxVal = 0;
+		    int minVal = 0;
+		    
+	        if(prmtr1 > prmtr2) {
+	            maxVal = prmtr1;
+	            minVal = prmtr2;
+	        } else {
+                maxVal = prmtr2;
+                minVal = prmtr1;
+	        }
+		    
+		    boolean isColNum = true;
+		    
+	             if (prmtr1 < 2 || prmtr2 < 2) {isColNum = false;} 
+	        else if (prmtr1 > 9 || prmtr2 > 9) {isColNum = false;}
+		    
+		    // check validation
+		    if(!isColNum) { 
+		        System.out.println("INPUT ERROR!");
+		    } else {
+		        for(int reptVal = 1; reptVal < 10; reptVal++) {
+		            for(int i = maxVal; i >= minVal; i--) {
+		                String lpdStr = "";
+		                
+		                if(i * reptVal < 10) {lpdStr += " " + i * reptVal;} 
+		                else                 {lpdStr +=       i * reptVal;}
+		                
+		                System.out.printf(i+astr+reptVal+eqls+lpdStr+term);
+		            }
+		            System.out.println();
+		        }
+		        
+		        break;
+		    }
+		    
 		}
+		
 	}
 
 }
