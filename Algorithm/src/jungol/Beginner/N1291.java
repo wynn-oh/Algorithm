@@ -16,29 +16,18 @@ public class N1291 {
 	 * 4. 데이터의 크기가 주어진 범위를 벗어날 경우는 "INPUT ERROR!"를 출력하고 s와 e를 다시 입력받는다.
 	 * 
 	 * */
+	private static String term = "   ";
+	private static String astr = " * ";
+	private static String eqls = " = ";
 
 	public static void main(String[] args) {
 	    Scanner scnr = new Scanner(System.in);
 		
-		String term = "   ";
-		String astr = " * ";
-		String eqls = " = ";
 		
 		while(true) {
 		    
 		    int prmtr1 = scnr.nextInt();
 		    int prmtr2 = scnr.nextInt();
-		    
-		    int maxVal = 0;
-		    int minVal = 0;
-		    
-	        if(prmtr1 > prmtr2) {
-	            maxVal = prmtr1;
-	            minVal = prmtr2;
-	        } else {
-                maxVal = prmtr2;
-                minVal = prmtr1;
-	        }
 		    
 		    boolean isColNum = true;
 		    
@@ -49,23 +38,43 @@ public class N1291 {
 		    if(!isColNum) { 
 		        System.out.println("INPUT ERROR!");
 		    } else {
-		        for(int reptVal = 1; reptVal < 10; reptVal++) {
-		            for(int i = maxVal; i >= minVal; i--) {
-		                String lpdStr = "";
-		                
-		                if(i * reptVal < 10) {lpdStr += " " + i * reptVal;} 
-		                else                 {lpdStr +=       i * reptVal;}
-		                
-		                System.out.printf(i+astr+reptVal+eqls+lpdStr+term);
-		            }
-		            System.out.println();
-		        }
-		        
+		    	if(prmtr1 > prmtr2) minRept(prmtr1, prmtr2);
+		    	else                maxRept(prmtr1, prmtr2);
 		        break;
 		    }
 		    
 		}
 		
+		scnr.close();
+		
+	}
+	
+	private static void maxRept(int prmtr1, int prmtr2) {
+        for(int reptVal = 1; reptVal < 10; reptVal++) {
+            for(int i = prmtr1; i <= prmtr2; i++) {
+                String lpdStr = "";
+                
+                if(i * reptVal < 10) {lpdStr += " " + i * reptVal;} 
+                else                 {lpdStr +=       i * reptVal;}
+                
+                System.out.printf(i+astr+reptVal+eqls+lpdStr+term);
+            }
+            System.out.println();
+        }
+	}
+	
+	private static void minRept(int prmtr1, int prmtr2) {
+        for(int reptVal = 1; reptVal < 10; reptVal++) {
+            for(int i = prmtr1; i >= prmtr2; i--) {
+                String lpdStr = "";
+                
+                if(i * reptVal < 10) {lpdStr += " " + i * reptVal;} 
+                else                 {lpdStr +=       i * reptVal;}
+                
+                System.out.printf(i+astr+reptVal+eqls+lpdStr+term);
+            }
+            System.out.println();
+        }
 	}
 
 }
